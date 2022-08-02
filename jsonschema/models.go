@@ -28,6 +28,7 @@ type Schema struct {
 	Ref       *string // $ref, i.e. JSON Pointers
 	ReadOnly  *bool
 	WriteOnly *bool
+	Optional  *bool
 
 	// http://json-schema.org/latest/json-schema-validation.html
 	// 5.1.  Validation keywords for numeric instances (number and integer)

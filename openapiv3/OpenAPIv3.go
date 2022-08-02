@@ -4270,6 +4270,15 @@ func NewSchema(in *yaml.Node, context *compiler.Context) (*Schema, error) {
 			}
 		}
 	}
+	// bool optional = 200;
+	v200 := compiler.MapValueForKey(m, "optional")
+	if v200 != nil {
+		x.Optional, ok = compiler.BoolForScalarNode(v200)
+		if !ok {
+			message := fmt.Sprintf("has unexpected value for optional: %s", compiler.Display(v200))
+			errors = append(errors, compiler.NewError(context, message))
+		}
+	}
 	return x, compiler.NewErrorGroupOrNil(errors)
 }
 
@@ -8181,6 +8190,10 @@ func (m *Schema) ToRawInfo() *yaml.Node {
 	if m.WriteOnly != false {
 		info.Content = append(info.Content, compiler.NewScalarNodeForString("writeOnly"))
 		info.Content = append(info.Content, compiler.NewScalarNodeForBool(m.WriteOnly))
+	}
+	if m.Optional != false {
+		info.Content = append(info.Content, compiler.NewScalarNodeForString("optional"))
+		info.Content = append(info.Content, compiler.NewScalarNodeForBool(m.Optional))
 	}
 	if m.Xml != nil {
 		info.Content = append(info.Content, compiler.NewScalarNodeForString("xml"))

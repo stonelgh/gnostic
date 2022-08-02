@@ -289,6 +289,9 @@ func (schema *Schema) nodeValue() *yaml.Node {
 	if schema.WriteOnly != nil && *schema.WriteOnly {
 		content = appendPair(content, "writeOnly", nodeForBoolean(*schema.WriteOnly))
 	}
+	if schema.Optional != nil {
+		content = appendPair(content, "optional", nodeForBoolean(*schema.Optional))
+	}
 	if schema.Type != nil {
 		content = appendPair(content, "type", schema.Type.nodeValue())
 	}

@@ -573,6 +573,8 @@ message Schema {
   string description = 34;
   string format = 35;
   repeated NamedAny specification_extension = 36;
+
+  bool optional = 200;
 }
 
 message SchemaOrReference {

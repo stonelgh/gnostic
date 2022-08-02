@@ -52,6 +52,9 @@ func (schema *Schema) describeSchema(indent string) string {
 	if schema.WriteOnly != nil && *schema.WriteOnly {
 		result += indent + fmt.Sprintf("writeOnly: %+v\n", *(schema.WriteOnly))
 	}
+	if schema.Optional != nil && *schema.Optional {
+		result += indent + fmt.Sprintf("optional: %+v\n", *(schema.Optional))
+	}
 	if schema.ID != nil {
 		switch strings.TrimSuffix(*schema.Schema, "#") {
 		case "http://json-schema.org/draft-04/schema#":
